@@ -1,3 +1,4 @@
+import re
 def count_subsequence_string(a,b):
 	"""
 	it return count of string b in a as subsequence
