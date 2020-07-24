@@ -60,6 +60,8 @@ if __name__ == "__main__":
 	____2___	____3___
 	|		|	|		|
 	4		5	6		7
+	|
+	100
 	"""
 	root = Binary_Tree_Node(1)
 	root.left = Binary_Tree_Node(2)
@@ -70,8 +72,9 @@ if __name__ == "__main__":
 	a.right = Binary_Tree_Node(5)
 	b.left = Binary_Tree_Node(6)
 	b.right = Binary_Tree_Node(7)
+	a.left.left = Binary_Tree_Node(100)
 
-	print( PreOrder(bt,[]) )
-	print( Inorder(bt,[]) )
-	print( PostOrder(bt,[]) )
-	print( LevelOrder(bt,[]) )
+	print( PreOrder(root,[]) )
+	print( Inorder(root,[]) )
+	print( PostOrder(root,[]) )
+	print( LevelOrder(root,[]) )
