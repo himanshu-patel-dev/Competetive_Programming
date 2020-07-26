@@ -5,6 +5,15 @@ class BST_Tree_Node:
 		self.right = None
 		self.left = None
 
+def InorderSuccessor(root):
+	if root.right:
+		root = root.right
+	else:
+		return None
+	
+	while root.left:
+		root = root.left
+	return root.data
 
 if __name__ == "__main__":
 	"""      root
@@ -26,3 +35,6 @@ if __name__ == "__main__":
 	b.left = BST_Tree_Node(16)
 	b.right = BST_Tree_Node(20)
 	a.left.left = BST_Tree_Node(2)
+
+	print( InorderSuccessor(root) )
+	print( InorderSuccessor(root.left) )

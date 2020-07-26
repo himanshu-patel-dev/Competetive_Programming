@@ -5,6 +5,21 @@ class BST_Tree_Node:
 		self.right = None
 		self.left = None
 
+def isBST(root):
+	if root is None:
+		return True
+	if root.left and root.left.data >= root.data:
+		return False
+	if root.right and root.right.data <= root.data:
+		return False
+	
+	l = isBST(root.left)
+	r = isBST(root.right)
+	if l and r:
+		return True
+	else:
+		return False
+
 
 if __name__ == "__main__":
 	"""      root
@@ -26,3 +41,5 @@ if __name__ == "__main__":
 	b.left = BST_Tree_Node(16)
 	b.right = BST_Tree_Node(20)
 	a.left.left = BST_Tree_Node(2)
+
+	print( isBST(root) )

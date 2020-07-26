@@ -5,6 +5,14 @@ class BST_Tree_Node:
 		self.right = None
 		self.left = None
 
+def sort_BST(root,inorder):
+	""" inorder traversal of BST is sorted bst data """
+	if root is None:
+		return
+	sort_BST(root.left, inorder)
+	inorder.append(root.data)
+	sort_BST(root.right, inorder)
+	return inorder
 
 if __name__ == "__main__":
 	"""      root
@@ -26,3 +34,5 @@ if __name__ == "__main__":
 	b.left = BST_Tree_Node(16)
 	b.right = BST_Tree_Node(20)
 	a.left.left = BST_Tree_Node(2)
+
+	print( sort_BST(root,[]) )

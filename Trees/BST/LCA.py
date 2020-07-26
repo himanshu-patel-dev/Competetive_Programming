@@ -5,6 +5,15 @@ class BST_Tree_Node:
 		self.right = None
 		self.left = None
 
+def LCA(root,a,b):
+	""" a < b  required """
+	if  (a < root.data < b) or root.data == a or root.data == b:
+		return root.data
+	elif root.data > b:
+		return LCA(root.left,a,b)
+	else:
+		return LCA(root.right,a,b)
+
 
 if __name__ == "__main__":
 	"""      root
@@ -26,3 +35,5 @@ if __name__ == "__main__":
 	b.left = BST_Tree_Node(16)
 	b.right = BST_Tree_Node(20)
 	a.left.left = BST_Tree_Node(2)
+
+	print( LCA(root,16,20) )

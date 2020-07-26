@@ -5,6 +5,18 @@ class BST_Tree_Node:
 		self.right = None
 		self.left = None
 
+def find(root,data):
+	if root is None:
+		return False
+	
+	if root.data == data:
+		return True
+	elif root.data < data:
+		return find(root.right, data)
+	else:
+		return find(root.left, data)
+
+
 
 if __name__ == "__main__":
 	"""      root
@@ -26,3 +38,5 @@ if __name__ == "__main__":
 	b.left = BST_Tree_Node(16)
 	b.right = BST_Tree_Node(20)
 	a.left.left = BST_Tree_Node(2)
+
+	print( find(root,16) )

@@ -5,6 +5,14 @@ class BST_Tree_Node:
 		self.right = None
 		self.left = None
 
+def max_element(root):
+	if root is None:
+		return None
+
+	while root.right:
+		root = root.right
+	return root.data
+
 
 if __name__ == "__main__":
 	"""      root
@@ -26,3 +34,5 @@ if __name__ == "__main__":
 	b.left = BST_Tree_Node(16)
 	b.right = BST_Tree_Node(20)
 	a.left.left = BST_Tree_Node(2)
+
+	print( find(root,16) )
