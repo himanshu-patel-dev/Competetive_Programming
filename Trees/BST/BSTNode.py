@@ -6,6 +6,7 @@ class BST_Tree_Node:
 		self.left = None
 
 
+
 if __name__ == "__main__":
 	"""      root
 		_____ 10______

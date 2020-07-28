@@ -6,13 +6,27 @@ class BST_Tree_Node:
 		self.left = None
 
 def sort_BST(root,inorder=[]):
-	""" inorder traversal of BST is sorted bst data """
 	if root is None:
 		return
 	sort_BST(root.left, inorder)
 	inorder.append(root.data)
 	sort_BST(root.right, inorder)
 	return inorder
+
+def trim_tree(root,mini,maxi):
+	if root is None:
+		return None
+
+	root.left = trim_tree(root.left,mini,maxi)
+	root.right = trim_tree(root.right,mini,maxi)
+	
+	if mini <= root.data <= maxi:
+		return root
+	elif root.data < mini:
+		return root.right
+	else:
+		return root.left
+
 
 if __name__ == "__main__":
 	"""      root
@@ -35,4 +49,5 @@ if __name__ == "__main__":
 	b.right = BST_Tree_Node(20)
 	a.left.left = BST_Tree_Node(2)
 
+	root = trim_tree(root,6,19)
 	print( sort_BST(root) )

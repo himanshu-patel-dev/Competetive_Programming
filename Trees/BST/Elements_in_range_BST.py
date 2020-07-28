@@ -5,14 +5,22 @@ class BST_Tree_Node:
 		self.right = None
 		self.left = None
 
-def sort_BST(root,inorder=[]):
-	""" inorder traversal of BST is sorted bst data """
+def range_BST(root,k1,k2,result=[]):
 	if root is None:
 		return
-	sort_BST(root.left, inorder)
-	inorder.append(root.data)
-	sort_BST(root.right, inorder)
-	return inorder
+
+	# no need to go left if root itself is equal or less than k1
+	if root.data > k1:
+		range_BST(root.left,k1,k2,result)
+	# add to result if satisfies
+	if k1 <= root.data <= k2:
+		result.append(root.data)
+	# no need to go right if root itself is equal or more than k2
+	if root.data < k2:
+		range_BST(root.right,k1,k2,result)
+
+	return result
+
 
 if __name__ == "__main__":
 	"""      root
@@ -35,4 +43,4 @@ if __name__ == "__main__":
 	b.right = BST_Tree_Node(20)
 	a.left.left = BST_Tree_Node(2)
 
-	print( sort_BST(root) )
+	print( range_BST(root,1,15) )

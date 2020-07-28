@@ -5,7 +5,7 @@ class BST_Tree_Node:
 		self.right = None
 		self.left = None
 
-def sort_BST(root,inorder):
+def sort_BST(root,inorder=[]):
 	""" inorder traversal of BST is sorted bst data """
 	if root is None:
 		return
@@ -42,5 +42,5 @@ if __name__ == "__main__":
 	# array = [3,10,30]
 	root = array_to_BST(array,len(array))
 	print( root.data )
-	print( sort_BST(root,[]) )
+	print( sort_BST(root) )
 

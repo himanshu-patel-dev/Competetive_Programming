@@ -5,12 +5,12 @@ class BST_Tree_Node:
 		self.right = None
 		self.left = None
 
-def kth_smallest_element(root,count,k):
+def kth_smallest_element(root,k,count=[0]):
 	""" returns k th smallest element in BST otherwise None """
 	if root is None:
 		return None
 	
-	l = kth_smallest_element(root.left,count,k)
+	l = kth_smallest_element(root.left,k,count)
 	if l:
 		return l
 	
@@ -18,7 +18,7 @@ def kth_smallest_element(root,count,k):
 	if count[0] == k:
 		return root.data
 	
-	r = kth_smallest_element(root.right,count,k)
+	r = kth_smallest_element(root.right,k,count)
 	if r:
 		return r
 	
@@ -45,4 +45,4 @@ if __name__ == "__main__":
 	b.right = BST_Tree_Node(20)
 	a.left.left = BST_Tree_Node(2)
 
-	print( kth_smallest_element(root,[0],4) )
+	print( kth_smallest_element(root,3) )
