@@ -6,15 +6,6 @@ class AVL_TreeNode:
 		self.right 	= None
 		self.left 	= None
 
-def AVL_node_bf(root,inorder=[]):
-	""" traversal of AVL is to give root data with corresponding bf """
-	if root is None:
-		return
-	AVL_node_bf(root.left, inorder)
-	inorder.append( (root.data,root.bf) )
-	AVL_node_bf(root.right, inorder)
-	return inorder
-
 def PreOrder(root,order=[]):
 	if root is None:
 		return
@@ -23,26 +14,27 @@ def PreOrder(root,order=[]):
 	PreOrder(root.right, order)
 	return order
 
-def height(root):
-	""" return height of any node of AVL trees """
-	if root is None:
-		return 0
-	
-	l = height(root.left)
-	r = height(root.right)
-	return 1 + max(l,r)
+def RightRotate(root):
+	Make_root = root.left
+	temp = Make_root.right
 
-def calculate_bf(root):
-	""" calculate balancing factor for each node in AVL tree """
-	if root is None:
-		return 0
-	
-	a = calculate_bf(root.left)
-	b = calculate_bf(root.right)
+	# perform rotation
+	Make_root.right = root
+	root.left = temp
 
-	root.bf = a-b
-	return max(a,b) + 1
+	# return the new root
+	return Make_root
 
+def LeftRotate(root):
+	Make_root = root.right
+	temp = Make_root.left
+
+	# perform rotation
+	Make_root.left = root
+	root.right = temp
+
+	# return the new root
+	return Make_root
 
 
 if __name__ == "__main__":
@@ -54,6 +46,16 @@ if __name__ == "__main__":
   __3		7	 16		 20
   |			|
   2			8
+
+	After right rotation of node 3
+  			 root
+		_____ 10______
+		|			 |
+	____5___	 ____18___
+	|		|	 |		 |
+    2__		7	 16		 20
+	   |	|	|
+	   3	8
 	"""
 
 	root = AVL_TreeNode(10)
@@ -68,5 +70,6 @@ if __name__ == "__main__":
 	a.left.left = AVL_TreeNode(2)
 	a.right.right = AVL_TreeNode(8)
 
-	calculate_bf(root)
-	print( AVL_node_bf(root) )
+	print( PreOrder(root,[]) )
+	a.left = RightRotate( a.left )
+	print( PreOrder(root,[]) )

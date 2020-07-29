@@ -23,15 +23,6 @@ def PreOrder(root,order=[]):
 	PreOrder(root.right, order)
 	return order
 
-def height(root):
-	""" return height of any node of AVL trees """
-	if root is None:
-		return 0
-	
-	l = height(root.left)
-	r = height(root.right)
-	return 1 + max(l,r)
-
 def calculate_bf(root):
 	""" calculate balancing factor for each node in AVL tree """
 	if root is None:
@@ -43,30 +34,47 @@ def calculate_bf(root):
 	root.bf = a-b
 	return max(a,b) + 1
 
+def Complete_AVL(h,count=[0]):
+	if h <= 0:
+		return None
 
+	# left sub tree
+	left = Complete_AVL(h-1,count)
+	
+	# current node
+	count[0] += 1
+	root = AVL_TreeNode(count[0])
+	
+	# right sub tree
+	right = Complete_AVL(h-1,count)
+
+	root.left = left
+	root.right = right
+	return root
+
+def nodes_in_range(root,a,b):
+	if root is None:
+		return 0
+	elif root.data < a:
+		return nodes_in_range(root.right,a,b)
+	elif root.data > b:
+		return nodes_in_range(root.right,a,b)
+	else:
+		l = nodes_in_range(root.left,a,b)
+		r = nodes_in_range(root.right,a,b)
+		return l + r + 1
 
 if __name__ == "__main__":
 	"""      root
-		_____ 10______
+		_____ 4______
 		|			 |
-	____5___	 ____18___
+	____2___	 ____6___
 	|		|	 |		 |
-  __3		7	 16		 20
-  |			|
-  2			8
+    1		3	 5		 7
 	"""
 
-	root = AVL_TreeNode(10)
-	root.left = AVL_TreeNode(5)
-	root.right = AVL_TreeNode(18)
-	a = root.left
-	b = root.right
-	a.left = AVL_TreeNode(3)
-	a.right = AVL_TreeNode(7)
-	b.left = AVL_TreeNode(16)
-	b.right = AVL_TreeNode(20)
-	a.left.left = AVL_TreeNode(2)
-	a.right.right = AVL_TreeNode(8)
-
+	root = Complete_AVL(3,[0])
 	calculate_bf(root)
-	print( AVL_node_bf(root) )
+	print( 'Inorder: ',AVL_node_bf(root,[]) )
+
+	print( nodes_in_range(root,3,6) )
