@@ -77,4 +77,3 @@ N	   N
 	LevelOrder = [90, 15, 10, 7, 12, 2]
 	root = Make_Tree_From_LevelOrder( LevelOrder )
 	print( root.Inorder([]) )
-
