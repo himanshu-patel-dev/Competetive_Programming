@@ -30,3 +30,4 @@ if __name__ == "__main__":
 	print(s.pop())
 	print(s.peek())
 	s.printStack()
+	

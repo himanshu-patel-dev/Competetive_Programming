@@ -4,37 +4,38 @@ def max_area_histogram(lst):
 	"""
 	stack = []
 	max_area = 0
-	index = 0
+	current_index = 0
 	n = len(lst)
 
 	# iteratet over all elements
-	while index < n:
+	while current_index < n:
 		# if next element is greater than top element push it on stack 
-		if len(stack) == 0 or lst[stack[-1]] <= lst[index]:
-			stack.append( index )
-			index += 1
+		if len(stack) == 0 or lst[stack[-1]] <= lst[current_index]:
+			stack.append( current_index )
+			current_index += 1
 
 		# else keep poping element from stack till we get an element 
 		# whose hight is less than current 
 		else:
-			topIndex = stack.pop()
+			height = lst[ stack.pop() ]
 			if len(stack) == 0:
-				area = lst[topIndex] * index
+				width = current_index
 			else:
-				# dont use the formula ( lst[topIndex] * ( index - topIndex) )
-				# because it do not consider the elements in between stack[-1] and stack[-2]
-				# as elements in bw these two would have been poped if they were grater than
-				# height of stack[-1], below formula consider this fact
-				area = lst[topIndex] * ( index - stack[-1] - 1)
+				# width is calculated as the elements btw current_index and stack[-1]
+				# elements btw two index i and j are j-i-1 (excluding i and j)
+				# including i and j we write j-i+1
+				width = current_index - stack[-1] - 1
+			area = height * width
 			max_area = max( max_area, area )
 	
 	# do the same with elements left out in stack
 	while len(stack) != 0:
-		topIndex = stack.pop()
+		height = lst[ stack.pop() ]
 		if len(stack) == 0:
-			area = lst[topIndex] * index
+			width = current_index
 		else:
-			area = lst[topIndex] * ( index - stack[-1] - 1) 
+			width = current_index - stack[-1] - 1
+		area = height * width
 		max_area = max( max_area, area )
 
 	return max_area
