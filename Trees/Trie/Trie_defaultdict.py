@@ -1,29 +1,34 @@
+from collections import defaultdict
+
+class TrieNode:
+	def __init__(self):
+		self.children = defaultdict(TrieNode)
+		self.isEnd = False
+
 class Trie:
 	def __init__(self):
-		self.root = {}
+		self.root = TrieNode()
 
 	def insert(self,word):
-		level = self.root
-		for char in word:
-			if char not in level:
-				level[char] = {}
-			level = level[char]
-		level['End'] = True 
-	
-	def search(self,word):
-		level = self.root
-		for char in word:
-			if char not in level:
-				return False
-			level = level[char]
-		return 'End' in level
+		t = self.root
+		for c in word:
+			t = t.children[c]
+		t.isEnd = True
 
-	def startsWith(self,prefix):
-		level = self.root
-		for char in prefix:
-			if char not in level:
+	def search(self,word):
+		t = self.root
+		for c in word:
+			t = t.children.get(c)
+			if t is None:
 				return False
-			level = level[char]
+		return t.isEnd
+
+	def startsWith(self,word):
+		t = self.root
+		for c in word:
+			t = t.children.get(c)
+			if t is None:
+				return False
 		return True
 
 if __name__ == "__main__":
@@ -41,5 +46,3 @@ if __name__ == "__main__":
 
 	for word in search:
 		print( word,' -> ',t.startsWith(word) )
-	
-

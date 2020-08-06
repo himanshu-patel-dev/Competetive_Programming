@@ -4,20 +4,13 @@ class TrieNode:
         self.isEnd = False
 
 class Trie:
-
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
         self.root = TrieNode()
         
     def getNode(self):
         return TrieNode()
         
     def insert(self, word: str) -> None:
-        """
-        Inserts a word into the trie.
-        """
         length = len(word)
         level = self.root
         for i in range(length):
@@ -28,9 +21,6 @@ class Trie:
         level.isEnd = True
 
     def search(self, word: str) -> bool:
-        """
-        Returns if the word is in the trie.
-        """
         length = len(word)
         level = self.root
         for i in range(length):
@@ -42,9 +32,6 @@ class Trie:
         
 
     def startsWith(self, prefix: str) -> bool:
-        """
-        Returns if there is any word in the trie that starts with the given prefix.
-        """
         length = len(prefix)
         level = self.root
         for i in range(length):
@@ -58,8 +45,17 @@ class Trie:
             return True
 
 if __name__ == "__main__":
-	T = Trie()
-	T.insert('apple')
-	print( T.search('apple') )
-	print( T.search('app') )
-	print( T.startsWith('app') )
+	inp = ['apple','apk']
+	search = ['apple','app','ap','application']
+	t = Trie()
+
+	for word in inp:
+		t.insert(word)
+
+	for word in search:
+		print( word,' -> ',t.search(word) )
+
+	print('---------------------------------')
+
+	for word in search:
+		print( word,' -> ',t.startsWith(word) )
