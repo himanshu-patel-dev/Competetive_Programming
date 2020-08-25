@@ -25,5 +25,5 @@ if __name__ == "__main__":
 	# print(len(primes))
 
 	# range under 1 to n in which we want all primes
-	n = 10
+	n = 501
 	print( primes[: bisect.bisect(primes,n) ] )

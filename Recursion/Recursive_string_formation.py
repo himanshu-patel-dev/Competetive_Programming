@@ -1,0 +1,47 @@
+"""
+Numbers With Same Consecutive Differences
+
+Return all non-negative integers of length N such that the absolute difference 
+between every two consecutive digits is K. Note that every number in the answer 
+must not have leading zeros except for the number 0 itself. For example, 01 has 
+one leading zero and is invalid, but 0 is valid.You may return the answer in 
+any order.
+
+Example 1:
+
+Input: N = 3, K = 7
+Output: [181,292,707,818,929]
+Explanation: Note that 070 is not a valid number, because it has leading zeroes.
+
+Example 2:
+
+Input: N = 2, K = 1
+Output: [10,12,21,23,32,34,43,45,54,56,65,67,76,78,87,89,98]
+"""
+class Solution:
+        def numsSameConsecDiff(self, n, k):
+            self.k = k
+            self.result = []
+
+            for i in range(1,10):
+                self.solve(str(i),n-1)
+            print(self.result)
+        
+        def solve(self,string,l):
+            if l == 0:
+                self.result.append( int(string) )
+                return
+
+            c = int(string[-1]) + self.k 
+            if c < 10:
+                self.solve( string + str(c), l-1 )
+
+            d = int(string[-1]) - self.k
+            if d >= 0:
+                self.solve( string + str(d), l-1 )
+
+                
+if __name__ == "__main__":
+    s = Solution()
+    s.numsSameConsecDiff(3,7)
+    s.numsSameConsecDiff(2,1)

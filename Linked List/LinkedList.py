@@ -4,29 +4,11 @@ class Node:
 		self.data = None
 		self.next = None
 
-	# method to work on node data
-	def set_data(self,data):
-		self.data = data
-
-	def get_data(self):
-		return self.data 
-
-	def set_next(self,next):
-		self.next = next
-
-	def get_next(self):
-		return self.next
-
-	def has_next(self):
-		return self.next != None
-
-
 class Linked_list(Node):
 	def __init__(self,data):
 		# initializing linked list with length and data
 		self.head = Node()
 		self.head.data = data
-		self.length = 1
 
 	def list_length(self):
 		# gettting length of linked list
@@ -34,111 +16,103 @@ class Linked_list(Node):
 		current = self.head
 		while current != None:
 			count += 1
-			current = current.get_next()
+			current = current.next
 		return count
 
 	def insert_beginning(self,data):
 		# inserting node at beginning
 		newNode = Node()
-		newNode.set_data(data)
-		newNode.set_next(self.head)
+		newNode.data = data
+		newNode.next = self.head
 		self.head = newNode
-		self.length += 1
 		
 	def insert_end(self,data):
 		# inserting node at end
 		newNode = Node()
-		newNode.set_data(data)
+		newNode.data = data
 
 		current = self.head
-		while current.get_next() != None:
-			current = current.get_next()
-		
-		current.set_next(newNode)
-		self.length += 1
+		while current.next != None:
+			current = current.next
+		current.next = newNode
 
 	def insert_after_k(self,k,data):
 		# insert at k th location (head is at location 0 and end at location n)
-		if k < 0 or k > self.length:
+		l = self.list_length()
+		if k < 0 or k > l:
 			print("Not proper index")
 			return None
 		elif k == 0:
 			self.insert_beginning(data)
-		elif k == self.length:
+		elif k == l:
 			self.insert_end(data)
 		else:
 			newNode = Node()
-			newNode.set_data(data)
+			newNode.data = data
 			count = 0
 			current = self.head
 
 			while count < k-1:	# zero based indexing
 				count += 1
-				current = current.get_next()
+				current = current.next
 			
-			newNode.set_next( current.get_next() )
-			current.set_next( newNode )
-			self.length += 1
+			newNode.next = current.next
+			current.next = newNode
 	
 	def del_beginning(self):
-		# delete beginning list
-		if self.length == 0:
-			print("list is empty")
+		if self is not None:
+			self.head = self.head.next
 		else:
-			self.head = self.head.get_next()
-			self.length -= 1
+			raise "Head is None"
 
 	def del_last(self):
 		# delete last element of list
-		if self.length == 0:
-			print("List is empty")
-		else:
-			previous_node = None
-			current_node = self.head
+		if self is None:
+			raise "Head is None"
 
-			while current_node.get_next() != None:
-				previous_node = current_node
-				current_node = current_node.get_next()
+		previous_node = None
+		current_node = self.head
 
-			previous_node.set_next(None)
-			self.length -= 1
+		while current_node.next != None:
+			previous_node = current_node
+			current_node = current_node.next
+		previous_node.next = None
 
 	def del_node(self,node):
 		# deleting node by its reference passed
-		if self.length == 0:
-			raise ValueError("List is empty")
-		else:
-			current = self.head
-			previous = None
-			found = False
+		if self is None:
+			raise "Head is None"
 
-			while not found:
-				if current == Node:
-					found = True
-				elif current is None:
-					raise ValueError("Node not found")
-				else:
-					previous = current
-					current = current.get_next()
-			
-			if previous is None:
-				self.head = current.get_next()
+		current = self.head
+		previous = None
+		found = False
+
+		while not found:
+			if current == Node:
+				found = True
+			elif current is None:
+				raise ValueError("Node not found")
 			else:
-				previous.set_next(current.get_next())
+				previous = current
+				current = current.next
 
-			self.length -= 1
-	
+		if previous is None:
+			self.head = current.next
+		else:
+			previous.next = current.next
+
+
 	def del_value(self,value):
 		# deleting node by its value (only first occurance of value)
 		current = self.head
 		previous = self.head
 
-		while current.get_next() != None and current.data != value:
+		while current.next != None and current.data != value:
 			previous = current
-			current = current.get_next()
+			current = current.next
 
 		if current.data == value:
-			previous.set_next( current.get_next() )
+			previous.next = current.next
 		else:
 			print("Value not found")
 
@@ -149,11 +123,28 @@ class Linked_list(Node):
 	def print_list(self):
 		# print entire linked list
 		current = self.head
-		while current.get_next() != None:
-			print(current.get_data(),' -> ',end='')
-			current = current.get_next()
-		print(current.get_data())
+		while current.next != None:
+			print(current.data,' -> ',end='')
+			current = current.next
+		print(current.data)
 
+	def get_kth_node_from_end(self,k):
+		# first start a pointer and move it k step forward
+		# then start moving other pointers till first pointer each end
+		first = self.head
+		while first and k:
+			first = first.next
+			k -= 1
+
+		if k:
+			raise 'Less than k nodes in Linked List'
+
+		second = self.head
+		while first:
+			first = first.next
+			second = second.next
+
+		return second.data
 
 if __name__ == "__main__":
 	LL1 = Linked_list(10)
@@ -167,3 +158,8 @@ if __name__ == "__main__":
 	LL1.print_list()
 
 	print(LL1.list_length())
+
+	LL1.insert_after_k(1,15)
+	LL1.print_list()
+
+	print( LL1.get_kth_node_from_end(2) )

@@ -20,7 +20,12 @@ def  Subset_Sum(lst, target):
 	# 	print(*row)
 	return dp[-1][-1]
 
-if __name__ == "__main__":
-	lst = [3,2,4,19,3,7,13,10,6,11]
-	target = 17
-	print( Subset_Sum(lst, target) )
+
+# if __name__ == "__main__":
+# 	# lst = [3,2,4,19,3,7,13,10,6,11]
+# 	# target = 17
+
+# 	# two check if array can be divided such that sum of two part are equal
+# 	lst = [5,5,7,7]
+# 	target = sum(lst)//2
+# 	print( Subset_Sum(lst, target) )
