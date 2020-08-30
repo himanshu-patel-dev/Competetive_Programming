@@ -1,20 +1,23 @@
 # Directed edge
 from collections import defaultdict, deque
 
-class Graph():
+class Graph:
     def __init__(self):
         self.graph = defaultdict(list)
-
+    
+    # undirected graph
     def add_edge(self,src,dst):
         self.graph[src].append(dst)
+        self.graph[dst].append(src)
 
     def BFS(self,start):
         # Mark all vertices as not visited
         visited = [False]* len(self.graph)
 
         queue = deque()
-        queue.append(start) # putting start vertex in queue and making it visited
-        visited[source] = True
+        # putting start vertex in queue and making it visited
+        queue.append(start) 
+        visited[start] = True
 
         # until q not empty
         while queue:
