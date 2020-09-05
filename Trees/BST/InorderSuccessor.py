@@ -6,12 +6,16 @@ class BST_Tree_Node:
 		self.left = None
 
 def InorderSuccessor(root):
+	""" 
+	here we are not considering inorder successor 
+	in case in which are parent of a node is its inorder succeccor 
+	"""
 	if root.right:
 		root = root.right
 	else:
 		return None
 	
-	while root.left:
+	while root and root.left:
 		root = root.left
 	return root.data
 
@@ -38,3 +42,5 @@ if __name__ == "__main__":
 
 	print( InorderSuccessor(root) )
 	print( InorderSuccessor(root.left) )
+	print( InorderSuccessor(root.right) )
+	print( InorderSuccessor(root.right.left) )

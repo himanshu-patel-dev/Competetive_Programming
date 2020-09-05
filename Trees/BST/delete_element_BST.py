@@ -5,33 +5,43 @@ class BST_Tree_Node:
 		self.right = None
 		self.left = None
 
-def InorderSuccessor(root,parent):
-	while root.left:
-		parent,root = root,root.left
-	return (parent,root)
-
 def delete_node(root,data):
+	if root is None:
+		return None
+ 
 	if root.data == data:
+		# if both child are present
 		if root.left and root.right:
-			parent_IS, IS = InorderSuccessor(root.right,root)
-			# IS is the last member is left most branch its right is either null or some element
-			if parent_IS is not root:
-				parent_IS.left = IS.right
-			else:
-				parent_IS.right = IS.right
-			# replacing root's data by the inorder successor
-			root.data = IS.data		# or IS.left = root.left and IS.right = root.right
-			return root
+			
+			# get the min in right sub tree
+			temp = root.right
+			while temp.left:
+				temp = temp.left
+
+			# delete current node
+			root.data = temp.data
+			# here temp do not have left child only two case possible no 
+			# child or right child may be present thus it take O(1) for 
+			# algo to delete temp in rst and not infinite rucresion is 
+			# possible
+			root.right = delete_node(root.right,temp.data)
+	
+		# if only left child present return it
 		elif root.left:
 			return root.left
-		else: # root.right or both None
+
+		# if only right child is present return it
+		else: 
 			return root.right
+
+	# if root is more than target then go left and update the left child
 	elif root.data > data:
-		if root.left:
-			root.left = delete_node(root.left,data)		
+		root.left = delete_node(root.left,data)		
+	
+	# if root is less than target then go right and update the right child
 	else:	# root.data < data
-		if root.right:
-			root.right = delete_node(root.right,data)
+		root.right = delete_node(root.right,data)
+	
 	return root
 
 
@@ -58,4 +68,7 @@ if __name__ == "__main__":
 
 	from sort_BST import sort_BST
 	root = delete_node(root,18)
+	print( sort_BST(root,[]) )
+
+	root = delete_node(root,5)
 	print( sort_BST(root,[]) )
