@@ -1,4 +1,4 @@
-def LSP(string):
+def Longest_Pallindrome_Subsequence(string):
 	""" Longest Pallindrome Subsequence"""
 	n = len(string)
 	dp = [ [0 for i in range(n)] for j in range(n)]
@@ -22,4 +22,4 @@ def LSP(string):
 
 if __name__ == "__main__":
 	string = "ABCDBA"	# ans = 5
-	print( LSP(string) )
+	print( Longest_Pallindrome_Subsequence(string) )
