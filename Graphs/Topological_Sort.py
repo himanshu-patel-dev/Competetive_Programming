@@ -2,8 +2,9 @@
 from collections import defaultdict
 
 class Graph:
-	def __init__(self):
+	def __init__(self,v):
 		self.g = defaultdict(list)
+		self.v = v
 
 	# considering undirectional graph
 	def addEdge(self,u,v):
@@ -23,11 +24,14 @@ class Graph:
 		# append start vertex to sequence after all its child are added
 		sequence.append(node)
 
-	def TopologicalSort_complete(self,vertex):
+	def TopologicalSort_complete(self):
 		""" t sort for complete graph """
+		""" 
+		Given graph should not have cycle check using cycle in DAG algo
+		"""
 		sequence = []
-		visited = [False]*vertex
-		for v in range(vertex):
+		visited = [False]*self.v
+		for v in range(self.v):
 			if not visited[v]:
 				self.topological_sub(v,sequence,visited)
 		# reverse the sequence to get top sort
@@ -35,7 +39,7 @@ class Graph:
 		   
 
 if __name__ == "__main__":
-	graph = Graph()
+	graph = Graph(8)
 
 	graph.addEdge(0,1)
 	graph.addEdge(0,2)
@@ -46,9 +50,4 @@ if __name__ == "__main__":
 	graph.addEdge(4,5)
 	graph.addEdge(4,6)
 
-	# to display the adjacency list
-	# for v in range(8): 
-	# 	print(v,'->',graph.g[v])
-
-	vertex = 8
-	print( graph.TopologicalSort_complete(vertex) )
+	print( graph.TopologicalSort_complete() )
