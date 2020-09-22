@@ -1,26 +1,10 @@
-def max_repetetion_element(lst):
-	""" 
-	works only if:
-	1. All elements are in range 0 to n-1
-	2. All elements need to be pos (0 to n-1) as -ve element have 
-	different modulo
-	"""
-	n = len(lst)
+import spacy
 
-	# for each element at lst[i] go to index lst[i] 
-	# and increase value by n
-	for i in range(n):
-		lst[ lst[i]%n ] += n
-	print(lst)
+nlp = spacy.load('en_core_web_sm')
 
-	mx = -1
-	ele = None
-	for i in range(n):
-		if lst[i]//n > mx:
-			mx = lst[i]//n
-			ele = i
+sentence = "Apple acquires the Zoom app of China and stock\
+	 in NYSE rise by 5%. And Virtusa is now trying to buy Apple insted."
+doc = nlp(sentence)
 
-	print(f'{ele} repeated {mx} times')
-
-lst = [1,2,3,4,5,2,3,2,4,5,2]
-max_repetetion_element(lst)
+for entity in doc.ents:
+	print(entity.text, entity.label_)

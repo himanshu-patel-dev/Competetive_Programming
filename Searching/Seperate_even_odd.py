@@ -1,6 +1,4 @@
 """
-Problem: Dutch national flag
-
 Given a lst of integers seperate even in front and odd in end
 its not requied to maintaining relative ordering
 
