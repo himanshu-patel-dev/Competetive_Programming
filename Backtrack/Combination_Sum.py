@@ -23,33 +23,33 @@ for each permutation we copy k elements to result thus nPk * k
 """
 
 class Solution:
-    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
-        # to record all the combinations 
+	def combinationSum3(self, k, n):
+		# to record all the combinations 
 		result = []
 
 		# a recursive function to backtrack and for each input comb try out 
 		# all possible comnination starting from start
-        def backtrack(n,comb,start):
-            if n == 0 and len(comb) == k:
+		def backtrack(n,comb,start):
+			if n == 0 and len(comb) == k:
 				# combination satisfy requirement
-                result.append(comb.copy())
-                return
-                
-            if n < 0 and len(comb) == k:
+				result.append(comb.copy())
+				return
+				
+			if n < 0 and len(comb) == k:
 				# scope exceeded, backtrack
-                return
-            
+				return
+			
 			# iterrate from start+1 to 9
-            for i in range(start,9):
-                num = i+1
+			for i in range(start,9):
+				num = i+1
 				# append each num to current combination and proceed
 				# after choosing num as current char we can choose starting
 				# from start+1 to 9 for next combination
-                comb.append(num)
-                backtrack(n-num,comb,num)
-                # pop the current element from comb so that after return another
+				comb.append(num)
+				backtrack(n-num,comb,num)
+				# pop the current element from comb so that after return another
 				# element can take its position
 				comb.pop()
-                
-        backtrack(n,[],0)
-        return result
+				
+		backtrack(n,[],0)
+		return result
