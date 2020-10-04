@@ -1,4 +1,7 @@
 import heapq
+# note: heapq make a min heap thus make a max 
+# heap use -ve of element value
+
 
 # iterable
 lst = [2,4,1,8,6,3]

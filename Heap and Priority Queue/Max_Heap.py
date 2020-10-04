@@ -145,6 +145,84 @@ class Max_Heap:
 				return True
 		return  False
 
+	def merge_heap(self,new_heap):
+		"""
+		merge new_heap to current heap
+		T = O((m+n)log(m+n))
+		m = len(current heap) and n = len(new heap)
+		"""
+		# append heap2 at end of heap1
+		self.heap.extend(new_heap.heap)
+
+		n = len(self.heap)
+		# iterating over all leaf nodes in final heap 
+		# and heapify them all
+		for i in range((n+1)//2,n):
+			self.heapify_up(i)
+
+	def K_th_max_element(self,k):
+		"""
+		return the kth max element from heap without deleting
+		T = O(klogk)
+		S = O(n)		# append all n ele to aux
+		"""
+		aux_heap = Max_Heap()
+
+		mx_ele = None
+		while k:
+			mx_ele = self.delete_root()
+			k -= 1
+			aux_heap.insert_node(mx_ele)
+		
+		# now add remining original heap to aux heap 
+		# just by extending
+		aux_heap.heap.extend(self.heap)
+		# assign the aux heap to current heap
+		self.heap = aux_heap.heap
+
+		return mx_ele
+
+	def all_more_than_k_elements(self,k):
+		"""
+		give all elements of heap less than k
+		without deleting them
+		T = O(n)
+		S = O(n)	recursive call
+		"""
+		def sub(node,n,res):
+			if self.heap[node] > k:
+				res.append(self.heap[node])
+			
+			left = 2*node+1
+			right = 2*node+2
+
+			if left < n:
+				sub(left,n,res)
+			if right < n:
+				sub(right,n,res)
+		
+		res = []
+		sub(0,len(self.heap),res)
+		return res
+
+def test_max_heap(max_heap):
+	# make a deep copy of object so that 
+	import copy
+	h = copy.deepcopy(max_heap)
+
+	lst1 = h.heap[:]
+	lst1.sort(reverse=True)
+	# print(lst1)
+
+	lst2 = [] 
+	while h.heap:
+		lst2.append( h.delete_root() )
+
+	if lst1 == lst2:
+		print("Valid Max heap")
+	else:
+		print("Invalid Max Heap properties")
+
 if __name__ == "__main__":
 	lst = [45,99,63,27,29,57,42,35,12,24]
 
@@ -152,15 +230,31 @@ if __name__ == "__main__":
 	for ele in lst:
 		max_heap.insert_node(ele)
 
-	print("Initial Heap")
-	max_heap.print_heap()
+	# print("Insert node in Heap")
+	# max_heap.insert_node(50)
+	# max_heap.print_heap()
 
-	print("Insert node in Heap")
-	max_heap.insert_node(50)
-	max_heap.print_heap()
+	# print("Delete node from Heap")
+	# print("Max Element: ", max_heap.delete_root())
+	# max_heap.print_heap()
 
-	print("Delete node from Heap")
-	print("Max Element: ", max_heap.delete_root())
-	max_heap.print_heap()
+	# print("Get the min element in max heap: ", max_heap.get_min())
 
-	print("Get the min element in max heap: ", max_heap.get_min())
+
+	# make a new heap and merge with older one
+	# lst = [1,2,3,4,5]
+	# mx_heap = Max_Heap()
+	# for e in lst:
+	# 	mx_heap.insert_node(e)
+	# print( test_max_heap(max_heap) )
+
+	# max_heap.merge_heap(mx_heap)
+	# max_heap.print_heap()
+
+	print("3rd max element: ", max_heap.K_th_max_element(3) )
+
+	print(max_heap.all_more_than_k_elements(40))
+
+	# testing heap property after all operations
+	test_max_heap(max_heap)
+	max_heap.print_heap()
