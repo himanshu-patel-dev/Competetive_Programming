@@ -30,3 +30,10 @@ def Longest_Palindromic_Substring(string):
 if __name__ == "__main__":
 	string = "GEEKEG"
 	print( Longest_Palindromic_Substring(string) )
+
+
+	string = ""
+	print( Longest_Palindromic_Substring(string) )
+
+	string = "abcbax"
+	print( Longest_Palindromic_Substring(string) )

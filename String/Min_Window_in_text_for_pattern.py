@@ -1,3 +1,8 @@
+"""
+Given a text s and pattern p find the min len string in text in which we can
+find the pattern p. 
+"""
+
 from collections import Counter, defaultdict
 
 def pattern_in_string_window(s,p):
