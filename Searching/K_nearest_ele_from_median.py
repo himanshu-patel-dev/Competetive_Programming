@@ -1,16 +1,13 @@
 """
-To get kth smallest/largest element in unsorted array 
+To get k nearest element from the median in unsorted array 
 T = O(n) 
 S = O(1)
 
-It is better than quick select as it given lineat time sol in every case
-
-Also in a array a median is n/2 smallest element so to get median of unsorted
-array in O(N) retrieve the k = n/2 smallest element if n is odd or retrieve
-avg of n/2 and n/2 + 1 ele from array
-
-Median : see last eg
-
+1. Get median of array in O(n)
+2. Get abs difference in median from
+3. Get the smallest kth element and get all the elements new list
+(with abs diff) which are less than or equal to kth ele obtained. and for each
+corresponding ele get the actual ele from old list (without abs diff)
 """
 
 def range_median(lst,start,n):
@@ -30,7 +27,7 @@ def partition(lst,start,end,med_median):
 	for i in range(start,end+1):
 		if lst[i] == med_median:
 			lst[end], lst[i] = lst[i], lst[end]
-			break
+			# break
 	
 	# last ele is med of med and we take it as pivot
 	x = lst[end]
@@ -42,7 +39,6 @@ def partition(lst,start,end,med_median):
 	# place the pivot ele in its place and return its index
 	lst[curr], lst[end] = lst[end], lst[curr]
 	return curr
-
 
 def kth_smallest_sub(lst,start,end,k):
 	if k < 1 or k > end-start+1:
@@ -98,35 +94,23 @@ def median_of_median(lst):
 		b = n//2 + 1
 		return ( kth_smallest(lst,a) + kth_smallest(lst,b) )/2
 
+def get_k_nearest_neighbour_to_some_element(lst,value,k):
+	abs_diff = [ abs(ele-value) for ele in lst ]
+	# get the kth smallest ele in this abs diff array
+	kth_ele = kth_smallest(abs_diff.copy(), k)
+
+	res = []
+	for i,ele in enumerate(abs_diff):
+		if ele <= kth_ele:
+			res.append( lst[i] )
+	return res
+
 if __name__ == "__main__":
-	# [2,4,5,6,8,10,11,26]
-
-	lst = [10, 4, 5, 8, 6, 11, 26, 2]
-	k = 3
-	print( kth_smallest(lst,k) )	# 5
-
-	lst = [10, 4, 5, 8, 6, 11, 26, 2]
-	k = 7
-	print( kth_smallest(lst,k) )	# 11
-
-	lst = [10, 4, 5, 8, 6, 11, 26, 2]
-	k = 5
-	print( kth_smallest(lst,k) )	# 8
-
-	lst = [10, 4, 5, 8, 6, 11, 26, 2]
-	k = 0
-	print( kth_smallest(lst,k) )	# None
-
-	lst = [10, 4, 5, 8, 6, 11, 26, 2]
-	k = 9
-	print( kth_smallest(lst,k) )	# None
-
-	lst = [10, 4, 5, 8, 6, 11, 26, 2]
-	k = 8
-	print( kth_smallest(lst,k) )	# 26
-
-	# here len = 30 so to get median we can take avg of 15 and 16 smallest ele
-	lst = [1,5,3,2,4,9,8,7,6,10,12,11,13,14,15,18,16,
-	19,20,17,23,21,22,25,24,29,30,26,28,27]
-	print( median_of_median(lst) )
-	
+	# define the array 
+	lst = [1,5,3,2,4,9,8,7,6,10,12,11,13,14,15,18,16,19,20,17,23,21,22,25,24,29,30,26,28,27]
+	# get the median of lst
+	median = median_of_median(lst)
+	print("Median: ",median)
+	# get the 5 nearest ele from the median
+	res = get_k_nearest_neighbour_to_some_element(lst, median, 5)
+	print(res)
