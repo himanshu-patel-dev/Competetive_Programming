@@ -26,7 +26,10 @@ def max_stock(lst,k):
 			dp[i][j] = max(dp[i][j-1], lst[j] + maxDiff )
 			# update maxDiff
 			maxDiff = max(maxDiff, dp[i-1][j] - lst[j])
-	print(dp)
+	
+	# for r in dp:
+	# 	print(r)
+
 	return dp[row-1][col-1]		
 
 def max_stock_two_transaction(lst):

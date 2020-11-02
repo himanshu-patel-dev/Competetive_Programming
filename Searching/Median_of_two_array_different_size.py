@@ -45,3 +45,19 @@ if __name__ == "__main__":
 	lst1 = [1,12,15,26,38]
 	lst2 = [2,13,17,30,45,50]
 	print( median(lst1,lst2) )
+
+	lst1 = [1,3]
+	lst2 = [2]
+	print( median(lst1,lst2) )
+
+	lst1 = [1,2]
+	lst2 = [3,4]
+	print( median(lst1,lst2) )
+
+	lst1 = [0,0]
+	lst2 = [0,0]
+	print( median(lst1,lst2) )
+
+	lst1 = []
+	lst2 = [1]
+	print( median(lst1,lst2) )
