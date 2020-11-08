@@ -11,13 +11,13 @@ Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
 """
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 class Solution:
-    def reorderList(self, head: ListNode) -> None:
+    def reorderList(self, head):
         """
         Do not return anything, modify head in-place instead.
         """
@@ -51,10 +51,23 @@ class Solution:
             head1 = head2
             head2 = nxt
         
-        return head
-        
-        
-            
-            
-            
-            
+        return head         
+
+def printLL(head):
+    while head.next:
+        print(head.val,end='->')
+        head = head.next
+    print(head.val)
+
+if __name__ == "__main__":
+    ll1 = ListNode(1)
+    ll2 = ListNode(2)
+    ll3 = ListNode(3)
+    ll4 = ListNode(4)
+    ll1.next = ll2
+    ll2.next = ll3
+    ll3.next = ll4
+    s = Solution()
+
+    printLL(ll1)
+    printLL( s.reorderList(ll1) )

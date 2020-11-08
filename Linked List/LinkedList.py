@@ -88,7 +88,7 @@ class Linked_list(Node):
 		found = False
 
 		while not found:
-			if current == Node:
+			if current == node:
 				found = True
 			elif current is None:
 				raise ValueError("Node not found")
@@ -146,6 +146,13 @@ class Linked_list(Node):
 
 		return second.data
 
+	def reverse_LL(self):
+		curr, prev = self.head, None
+		while curr:
+			curr.next, curr, prev = prev, curr.next, curr
+		return prev
+
+
 if __name__ == "__main__":
 	LL1 = Linked_list(10)
 	LL1.insert_end(20)
@@ -163,3 +170,19 @@ if __name__ == "__main__":
 	LL1.print_list()
 
 	print( LL1.get_kth_node_from_end(2) )
+
+	print("Merge two LL")
+	LL2 = Linked_list(11)
+	LL2.insert_end(21)
+	LL2.head.next.next = LL1.head.next.next
+	LL2.print_list()
+
+
+	print('Linked List Reverse')
+	LL1.print_list()
+	head = LL1.reverse_LL()
+	while head.next:
+		print(head.data,end='->')
+		head = head.next
+	print(head.data)
+
