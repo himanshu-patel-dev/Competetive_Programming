@@ -20,14 +20,47 @@ class Node:
 		self.random = None
 
 	def __str__(self) -> str:
-		# return string representation of Node
 		return str(self.data)
 
 
 def CloneLL(head):
 	''' 
 	Return a clone of LL with next and random pointer 
-	T = O(3n) = O(n)
+	T = O(n)
+	S = O(n)
+	'''
+	hash = {}
+	# hash all new node as value with original node as key
+	t = head
+	while t:
+		hash[t] = Node(t.data)
+		t = t.next
+
+	# link all nodes in clone with random pointer
+	t = head
+	while t:
+		a,b = t, t.random
+		if a and b:
+			hash[a].random = hash[b]
+		t = t.next
+
+	# link all nodes in clone map with next pointer
+	clone = Node(0)
+	sec = clone
+	first = head
+	while first:
+		sec.next = hash[first]
+		sec = sec.next
+		first = first.next
+	clone = clone.next
+
+	return clone
+
+
+def CloneLL(head):
+	''' 
+	Return a clone of LL with next and random pointer 
+	T = O(n)
 	S = O(1)
 	'''
 	t = head
@@ -63,7 +96,9 @@ def CloneLL(head):
 		new = new.next
 	# remove first blank node in new LL
 	clone = clone.next
-
+	
+	# print_list(head,0)
+	# print_list(clone,0)
 	return clone
 
  

@@ -33,7 +33,7 @@ class Solution:
             
         
         # reverse the second half of LL and terminate both so that there no cycle
-        curr, prev, nextp = slow.next, None, None
+        curr, prev = slow.next, None
         while curr:
             curr.next, curr, prev = prev, curr.next, curr
         slow.next = None # to remove cycle
@@ -46,10 +46,9 @@ class Solution:
         while head2:    # because second LL is shorted in case of odd element 
             # write both LL start to end and observer
             # final LL make a zig zag move in between both
-            nxt = head1.next
+            remain_head1 = head1.next
             head1.next = head2
-            head1 = head2
-            head2 = nxt
+            head1, head2 = head2, remain_head1 
         
         return head         
 
