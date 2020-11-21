@@ -39,3 +39,16 @@ if __name__ == "__main__":
 		print("Not Found")
 	else:
 		print(f"Found at index {result}")
+
+
+	lst = [3,1] 
+	target = 1
+	n = len(lst)
+	result = rotated_pivoted_array(lst,0,n-1,target)
+
+	if result == -1:
+		print("Not Found")
+	else:
+		print(f"Found at index {result}")
+
+	
