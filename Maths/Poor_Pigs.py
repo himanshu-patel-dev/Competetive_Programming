@@ -30,13 +30,13 @@ let k = minutesToTest // minutesToDie is total no of complete test we can make
 before timeout but in actual we can make k+1 verification. as the last optioin need 
 no test
 
-# 1. if the no of pigs is equal or less then T = k+1
+# 1. if the no of buckets is equal or less then T = k+1
 
 buckets = 1,2,3,4,5 then with 60 min total and 15 min to die we can make 60//15 test
 but 4+1 = 5 verification as we with 4 test we can test 4 buckets and 5th we dont 
 need to test as we are sure it has poison (exactly one bucker poisonous)
 
-# if no of pigs is more than T = k+1 and less then T^2 then we need 2 pigs
+# if no of buckets is more than T = k+1 and less then T^2 then we need 2 pigs
 
 if there are 25 pigs we can identify row and col of intersect
 
@@ -50,7 +50,7 @@ for each test one pig test complete row and anther test complete col for each te
 interval thus within 5 verification we test out all 5 row and 5 col and intersection
 give poison bucket
 
-# if no of pig are more than T^2 and less than equal to T^3 then we need 3 pigs
+# if no of buckets are more than T^2 and less than equal to T^3 then we need 3 pigs
 
 consider a 3D cube with each face as 
 1  2  3  4  5
