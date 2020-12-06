@@ -37,7 +37,7 @@ class Solution:
 
 		# go through all right child of left sub tree 
 		# and let them refer left child of right sub tree
-		while left.left:
+		while left.right:
 			left, right = left.right, right.left
 			left.next = right
 		
