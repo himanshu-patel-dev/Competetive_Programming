@@ -13,6 +13,9 @@ def  Longest_Common_Subsequence(string1, string2):
     # use this return to get the max len of LCS
     # return dp[n1][n2]
 
+    for row in dp:
+        print(row)
+
     # to get the actual LCS string
     result = ""
     while n1 != 0 and n2 != 0:
