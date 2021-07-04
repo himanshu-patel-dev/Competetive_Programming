@@ -53,7 +53,7 @@ class Solution:
 
 class Solution:
     '''
-        Make an array of size equal the size of maximum possible size of given integer in array
+        Make an array of size equal the size of maximum integer in array
         Make a prefix sum array for each element's count and take count of element 1 less then it
 
         T = O(n)
