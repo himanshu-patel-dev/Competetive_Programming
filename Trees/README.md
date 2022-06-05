@@ -18,3 +18,5 @@
 ## Locked Problems but important
 - https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
   Solution where we don't have to search all the nodes. (https://www.youtube.com/watch?v=wrX3tTSzrCA&ab_channel=CrackingFAANG) or (https://zhenchaogan.gitbook.io/leetcode-solution/leetcode-1650-lowest-common-ancestor-of-a-binary-tree-iii)
+- https://leetcode.com/problems/correct-a-binary-tree/
+  Solution using Breadth First Search (https://leetcode.ca/2020-06-16-1660-Correct-a-Binary-Tree/)
