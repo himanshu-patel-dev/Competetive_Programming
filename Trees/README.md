@@ -14,9 +14,11 @@
 - https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/
 - https://leetcode.com/problems/insert-into-a-binary-search-tree/
 - https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/
+- https://leetcode.com/problems/distribute-coins-in-binary-tree/
 
 ## Locked Problems but important
 - https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
   Solution where we don't have to search all the nodes. (https://www.youtube.com/watch?v=wrX3tTSzrCA&ab_channel=CrackingFAANG) or (https://zhenchaogan.gitbook.io/leetcode-solution/leetcode-1650-lowest-common-ancestor-of-a-binary-tree-iii)
 - https://leetcode.com/problems/correct-a-binary-tree/
   Solution using Breadth First Search (https://leetcode.ca/2020-06-16-1660-Correct-a-Binary-Tree/)
+- https://leetcode.com/problems/binary-search-tree-iterator-ii/ Solution using BST to DLL conversion (https://leetcode.ca/2020-04-03-1586-Binary-Search-Tree-Iterator-II/)
