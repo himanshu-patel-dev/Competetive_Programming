@@ -15,6 +15,10 @@
 - https://leetcode.com/problems/insert-into-a-binary-search-tree/
 - https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/
 - https://leetcode.com/problems/distribute-coins-in-binary-tree/
+- https://leetcode.com/problems/delete-nodes-and-return-forest/
+- https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/
+- https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/
+- https://leetcode.com/problems/flip-equivalent-binary-trees/
 
 ## Locked Problems but important
 - https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
@@ -22,3 +26,4 @@
 - https://leetcode.com/problems/correct-a-binary-tree/
   Solution using Breadth First Search (https://leetcode.ca/2020-06-16-1660-Correct-a-Binary-Tree/)
 - https://leetcode.com/problems/binary-search-tree-iterator-ii/ Solution using BST to DLL conversion (https://leetcode.ca/2020-04-03-1586-Binary-Search-Tree-Iterator-II/)
+- https://leetcode.com/problems/change-the-root-of-a-binary-tree/ Solution in Tree Sheets (https://leetcode.ca/all/1666.html for question and explaination) for solution (https://leetcode.ca/2020-06-22-1666-Change-the-Root-of-a-Binary-Tree/).
