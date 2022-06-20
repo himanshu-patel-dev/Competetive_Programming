@@ -19,6 +19,9 @@
 - https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/
 - https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/
 - https://leetcode.com/problems/flip-equivalent-binary-trees/
+- https://leetcode.com/problems/construct-quad-tree/
+- https://leetcode.com/problems/complete-binary-tree-inserter/
+- https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
 
 ## Locked Problems but important
 - https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
