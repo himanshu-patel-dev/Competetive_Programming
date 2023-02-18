@@ -39,8 +39,6 @@ class Dijkstra:
 		"""
 		# distance of all nodes is marked inf
 		distance = [float('inf') for _ in range(self.n)]
-		# to record the final graph/tree with min edges
-		previous = [None for _ in range(self.n)]
 		# keep track of which all vertices are visited/unvisited
 		visited = [False]*self.n
 		# marke the source vertex at dist 0 so this would be 
